@@ -1,0 +1,19 @@
+{
+    "name": "fabianobasso/portfolio_fabiano",
+    "description": "App Lista de Tarefas",
+    "license": "proprietary",
+    "authors":[
+        {
+            "name": "Fabiano Basso",
+            "email": "fabiano.basso.dev@gmail.com",
+            "role": "Developer",
+            "homepage": "https://fabianobasso.com.br"
+        }
+    ],
+    "autoload": {
+        "psr-4":{
+            "App\\": "app/"
+        }
+    },
+    "require": {}
+}
