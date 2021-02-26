@@ -1,4 +1,8 @@
+<?php
 
+    require_once '../config/config.php';
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -73,21 +77,22 @@
                             <span class="input-group-text"><i class="fas fa-lg fa-unlock-alt"></i></span>
                             <input type="password" name="senha" class="form-control" placeholder="senha">
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Login</button>
+                        <button type="submit" class="btn btn-primary mt-3" id="btn-login-app">Login</button>
                     </form>    
                 </div>
 
                 <div id="cadastro">
-                    <form action="" class="cadastro-form">
+                    <form action="loader.php" class="cadastro-form" method="post">
                         <div class="form-group">
                             <div class="input-group">
                                 
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Nome</span>
                                 </div>
-                                <input type="text" name="nome" class="form-control">
-
+                                <input type="text" name="name" class="form-control" id="name">
+                                    
                             </div>
+                            <small id="nameHelp" class="form-text"></small>
                             
                         </div>
 
@@ -97,9 +102,10 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Email</span>
                                 </div>
-                                <input type="email" name="email" class="form-control">
+                                <input type="email" name="email" class="form-control" id="email">
                                 
                             </div>
+                            <small id="emailHelp" class="form-text"></small>
                             
                         </div>
 
@@ -109,11 +115,14 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Senha</span>
                                 </div>
-                                <input type="password" name="senha" class="form-control">
-                                
+                                <input type="password" name="password" class="form-control"  maxlength="12" id="senha">
+                                <small id="passwordHelp" class="form-text"></small>
                             </div>
                             
                         </div>
+
+                        <!-- madar a função que deve ser carregada -->
+                        <input type="hidden" name="fileLoad" value="cadastra">    
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                     </form>    
                 </div>
@@ -132,6 +141,58 @@
                 Configuração <button class="btn-custom-config"><i class="fa fa-cog fa-spin fa-lg"></i></button>
             </div>
         </div>
+        <?php if(isset($_GET['cadastro'])): ?>
+
+        <div class="alert alert-danger mt-2 div-alert" role="alert">
+            <?= 'Para cadastro de usuário todos os campos são obrigatórios.' ?>
+        </div>
+
+        <?php endif  ?>
+        
+        
+        <?php if(isset($_GET['name'])): ?>
+
+        <div class="alert alert-danger mt-2 div-alert" role="alert">
+            <?= 'Nome informado inválido' ?>
+        </div>
+
+        <?php endif  ?>
+        
+        
+        <?php if(isset($_GET['email'])): ?>
+
+        <div class="alert alert-danger mt-2 div-alert" role="alert">
+            <?= 'Email informado é  inválido' ?>
+        </div>
+        
+        <?php endif  ?>
+        
+        <?php if(isset($_GET['duplicidade'])): ?>
+
+        <div class="alert alert-danger mt-2 div-alert" role="alert">
+            <?= 'Email informado já esta cadastrado' ?>
+        </div>
+        
+        <?php endif  ?>
+        
+        
+        <?php if(isset($_GET['sucesso'])): ?>
+
+        <div class="alert alert-success mt-2 div-alert" role="alert">
+            <?= 'Usuário Cadastrado com sucesso' ?>
+        </div>
+
+        <?php endif  ?>
+        
+        <?php if(isset($_GET['banco'])): ?>
+
+        <div class="alert alert-danger mt-2 div-alert" role="alert">
+            <?= 'É necessário configurar o banco de dados primeiro' ?>
+        </div>
+
+        <?php endif  ?>
+        
+        
     </div>
 
     <!-- Script jquery -->

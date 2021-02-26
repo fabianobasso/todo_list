@@ -86,4 +86,44 @@ $(document).ready(() =>{
     }
 
 
+    // Validate fields for user resgistration
+    
+    // name must contain 3 or more
+    $('#name').keyup( e =>{
+        $('#nameHelp').html('O nome deve ter no minimo 3 caracteres').addClass('text-danger')
+        let name = $(e.target).val()
+        if(name.length >= 3){
+            $('#nameHelp').html('Sucesso &#10003;').removeClass('text-danger').addClass('text-success')
+        }
+    })
+
+    // email exemple exemplo@dominio.com
+    $('#email').keyup(e =>{
+        $('#emailHelp').html('exemplo@dominio.com').addClass('text-muted ')
+    })
+
+    // must be a maximum of 12 characteres
+    $('#senha').keyup(e =>{
+        $('#passwordHelp').html('senha deve conter no máximo 12 caracteres entre número e letras')
+    })
+
+
+    // Fazer login do app
+    $('#btn-login-app').on('click', e => {
+        e.preventDefault()
+        $.ajax({
+            type: 'POST',
+            url: 'loader.php',
+            data: 'fileLoad=login',
+            dataType: 'json',
+            success: data =>{
+                if(data == '1'){
+                    location.href = 'app.php'
+                }
+                console.log(data)
+                
+            },
+            error: erro =>{console.log(erro)}
+        })
+    })
 })

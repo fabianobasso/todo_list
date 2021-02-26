@@ -1,7 +1,7 @@
 {
     "name": "fabianobasso/portfolio_fabiano",
     "description": "App Lista de Tarefas",
-    "license": "proprietary",
+    "license": "MIT",
     "authors":[
         {
             "name": "Fabiano Basso",
@@ -12,7 +12,8 @@
     ],
     "autoload": {
         "psr-4":{
-            "App\\": "app/"
+            "App\\": "app/",
+            "Config\\": "config/"
         }
     },
     "require": {}
