@@ -1,0 +1,82 @@
+
+    <div id="login">
+        <form action="" class="login-form" id="form-login-app">
+            <div class="form-group mb-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-lg fa-user"></i></span>
+                    </div>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="email">                    
+                </div>            
+            </div>
+            <div class="form-group mb-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-lg fa-unlock-alt"></i></span>
+                    </div>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="senha">                    
+                </div>            
+            </div>
+            <button type="submit" class="btn btn-primary mb-4" id="btn-login-app">Login</button>
+        </form>    
+    </div>
+    
+    <div class="td-flex-row mt-5">  
+        <a href="" class="link-custom" id="create-user">Cadastrar Usuário</a>
+        <a href="" class="link-custom">Esqueceu a Senha?</a>
+    </div>
+
+<script>
+    $(document).ready(() =>{
+
+         // Chamar tela de cadastro
+        $('#create-user').on('click', e => {
+            e.preventDefault()
+            $('.alerts-todo').hide().removeClass('alert-danger')
+            $('#login-todo').load('/assets/Views/index/cadastro.phtml')
+            $('.login-text-change').html('Cadastro')
+        })
+
+        $('#btn-login-app').on('click', e =>{
+            e.preventDefault()
+            let dataLogin = $('#form-login-app').serialize()
+            $('.alert-login').hide()
+            $('.alerts-todo').hide().removeClass('alert-danger')
+            $.ajax({
+                type: 'POST',
+                url: 'loader.php',
+                data: 'fileLoad=Login&' + dataLogin,
+                dataType: 'JSON',
+                success: dataLogin =>{
+                    console.log(dataLogin)
+                    if(dataLogin.fileload == 'false'){
+                        alertsTodoList('.alerts-todo', 'Entrar em contato com administrador: fabiano.basso.dev@gmail.com', 'alert-danger')
+                    }
+                    if(dataLogin.banco == 'false'){
+                        alertsTodoList('.alerts-todo', 'O banco de dados não foi configurado, consultar o manual no repositório.', 'alert-danger')
+                    }
+                    if(dataLogin.inputs == 'false'){
+                        alertsTodoList('.alerts-todo', 'É obrigatório preencher todos os dados para fazer o cadastro.', 'alert-danger')
+                    }
+                    if(dataLogin.email == 'false'){
+                        alertsTodoList('.alerts-todo', 'Email inválido, exemplo@seudominio.com.', 'alert-danger')
+                    }
+                    if(dataLogin.login == 'false'){
+                        alertsTodoList('.alerts-todo', 'Senha ou usuário inválido!!!', 'alert-danger')
+                    }
+                    if(dataLogin.login == 'true'){
+                        $(location).attr('href','app.php?dashboard')
+                    }
+
+                },
+                error: erro =>{
+                    console.log(erro.responseText)
+                }
+
+            })
+            
+        })
+        
+
+    })
+</script>

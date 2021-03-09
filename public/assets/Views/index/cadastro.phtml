@@ -1,0 +1,97 @@
+<div id="cadastro">
+    <form   id="todo-form-register">
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text tm">Nome</span>
+                </div>
+                <input type="text" name="name" class="form-control" id="name">                        
+            </div>
+            <small id="nameHelp" class="form-text"></small>
+                            
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text tm">Email</span>
+                </div>
+                <input type="email" name="email" class="form-control" id="email">                    
+            </div>
+            <small id="emailHelp" class="form-text"></small>     
+        </div>
+
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text tm">Senha</span>
+                </div>
+                <input type="password" name="password" class="form-control"  maxlength="12" id="password">
+                <small id="passwordHelp" class="form-text"></small>
+            </div>        
+        </div>                
+        <button class="btn btn-primary" id="todo-register">Cadastrar</button>
+    </form>
+
+    <div class="cadastro-text mt-2">  
+        <a href="" class="link-custom" id="cancel-registry">Voltar</a>
+    </div>
+</div>
+
+<script>
+    $(document).ready(() =>{
+
+        // Carrega a tela de login
+        $('#cancel-registry').on('click', e => {
+            e.preventDefault()
+            $('.login-text-change').html('')
+            $('#login-todo').load('/assets/Views/index/login.phtml')
+            $('.login-text-change').html('Login')
+        })
+
+        $('#todo-register').on('click', e =>{
+        e.preventDefault()
+        let dataRegister = $('#todo-form-register').serialize()
+        $('.alerts-todo').hide().removeClass('alert-danger')
+        $.ajax({
+            type: 'POST',
+            url: 'loader.php',
+            data: 'fileLoad=RegisterUser&' + dataRegister,
+            dataType: 'JSON',
+            success: datas => {
+                if(datas.fileload == 'false'){
+                    alertsTodoList('.alerts-todo', 'Entrar em contato com administrador: fabiano.basso.dev@gmail.com', 'alert-danger')
+                }
+                if(datas.banco == 'false'){
+                    alertsTodoList('.alerts-todo', 'O banco de dados não foi configurado, consultar o manual no repositório.', 'alert-danger')
+                }
+                if(datas.inputs == 'false'){
+                    alertsTodoList('.alerts-todo', 'É obrigatório preencher todos os dados para fazer o cadastro.', 'alert-danger')
+                }
+                if(datas.name == 'false'){
+                    alertsTodoList('.alerts-todo', 'O nome precisa ter 3 caracteres ou mais, e não pode ser estar em branco.', 'alert-danger')
+                }
+                if(datas.email == 'false'){
+                    alertsTodoList('.alerts-todo', 'Email inválido, exemplo@seudominio.com.', 'alert-danger')
+                }
+                if(datas.register == 'true'){
+                    alertsTodoList('.alerts-todo', 'Cadastro efetuado com sucesso.', 'alert-success')
+                    $('#name').val('')
+                    $('#email').val('')
+                    $('#password').val('')
+                    setTimeout(() =>{
+                        $('.alerts-todo').hide().removeClass('alert-danger, alert-success').html('')
+                    }, 3000)
+                }
+                if(datas.register == 'false'){
+                    alertsTodoList('.alerts-todo', 'Erro ao efetuar cadastro, tente novamente mais tarde.', 'alert-danger')
+                }
+
+            },
+            error: erro =>{
+                alertsTodoList('.alerts-todo', erro.responseText, 'alert-danger')
+            }
+        })
+
+        })
+    })
+</script>

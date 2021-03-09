@@ -1,2 +1,4 @@
 nbproject/*
 db/todo_list.db
+db/testeDB.sql
+db/infouser.txt

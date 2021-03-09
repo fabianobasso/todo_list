@@ -98,120 +98,95 @@
 }
 
 /* Login */
-.card.login{
-    width: 40%;
-    margin: 0 auto;
-    border-color: #837d7a;
+.td-flex-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
-.div-alert{
-    width: 40%;
-    margin: 0 auto;
+.td-title h3{
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #fff;
+    font-weight: 700;
+    font-size: 24px;
 }
-.btn-link{
-    text-decoration: none;
-}
-.card-header.login-title,.card-footer.login-title{
-    background-color: #837d7a;
+.card-footer{
     color: #fff;
     font-family: 'Roboto Condensed', sans-serif;
-    font-weight: 600;
-}
-.card-footer a{
-    text-decoration: none;
-    color: #ccc;
-}
-.card-footer a:hover{
-    color: #ddd;
-}
-
-.card-body form.login-form, .card-body form.cadastro-form{
-    padding: 35px 15px;
-    width: 100%;
-    margin-bottom: 0px;
-}
-.btn-custom{
-    border: none;
-    background-color: #fff;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    color: #007bff;
-    cursor: pointer;
-    line-height: 18px;
-    padding: 1px;
-    height: 18px;
-    transition: all 0.8s ease;
-}
-.btn-custom:hover{
-    color: #074a91;
-}
-.btn-custom:focus{
-    outline: 0;
-    box-shadow: 0 0 0;
+    font-size: 18px;
+    font-weight: 700;
 }
 .btn-custom-config{
     border: none;
-    background-color: transparent;
     cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    background-color: #dc3545;
+    transition: all .8s ease;
+    margin-left: 5px;
+}
+.btn-custom-config i{
+    color: #fff;
+    
+}
+.btn-custom-config:hover {
+    transform: scale(1.1);
+}
+.title-user-todo{
     color: #212529;
-    transition: all 0.5s ease;
+    font-size: 26px;
+    font-family: 'Roboto Condensed', sans-serif;
 }
-.btn-custom-config:hover{
-    color: #000;
+.title-user-todo span{
+    font-weight: 700;
 }
-.btn-custom-config:focus{
-    outline: 0;
-    box-shadow: 0 0 0;
+.card{
+    width: 350px;
+    margin: 0 auto;
+    height: 450px;
 }
-form.login-form .input-group-text{
-    background-color: #fff;
-    border: none;
-    border-bottom: 1px solid #a0a0a0;
-    border-radius: 0px;
+.card.tm-card{
+    height: 150px;
 }
-
-.login-form input{
-    border: none;
-    border-bottom: 1px solid #a0a0a0;
-    border-radius: 0px;
-    padding-bottom: 0px;
-    padding-left: 2px;
-}
-.login-form button, .cadastro-form button{
+#todo-form-register .btn,
+.login-form .btn{
     width: 100%;
 }
-
-.login-form input:focus{
-    outline: 0;
-    box-shadow: 0 0 0;
-    border-color: #666666;
-}
-
-.login-text{
-    margin-top: -30px;
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 15px;
-    /* display: none; */
-}
-.login-text span a{
+.cadastro-text a.link-custom,
+.td-flex-row a.link-custom{
     text-decoration: none;
+    font-size: 14px;
 }
-
-/* Cadastro */
-
-#cadastro{
+.alert-login{
+    width: 350px;
+    margin: 0 auto;
+}
+.alerts-todo{
+    width: 350px;
+    margin: 0 auto;
     display: none;
 }
-
-.cadastro-text{
-    margin-top: -30px;
-    padding: 0px 15px;
-    display: none;
-}
-.cadastro-form .input-group-text{
+.tm{
     width: 60px;
 }
+
+/* Footer */
+.fixed-bottom.todo-footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.fixed-bottom.todo-footer .todo-version,
+.fixed-bottom.todo-footer .todo-copy{
+    color: #fff;
+}
+.fixed-bottom.todo-footer .todo-copy span{
+    color: #cf455c;
+    font-weight: 700;
+} 
+
 
 
 .logo{
@@ -224,8 +199,15 @@ form.login-form .input-group-text{
 .logout{
     height: 100%;
 }
-.logout i{
+.logout a{
+    
+    color: #808080;
+}
+.logout a i{
     font-size: 40px;
+}
+.logout a:hover{
+    color: #6c757d;
 }
 
 .app {
@@ -296,6 +278,19 @@ li a:hover {
 	text-decoration: none;
 }
 
-h4 {
-	color: #009933 !important;
+/* Dashboard */
+
+.dashboard-content{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    
+}
+
+/* New Task */
+#alert-msg-task{
+    display: none;
+}
+#loading-register{
+    display: none;
 }

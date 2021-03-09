@@ -1,0 +1,101 @@
+<div class="container mt-5">
+            <div class="dashboard-content">
+                <div class="col-md-3 menu">
+                    <ul class="list-group">
+                        <li class="list-group-item azul-claro active" id="item-1"><a href="#" id="dashboard">Dashboard</a></li>
+                        <li class="list-group-item verde" id="item-2"><a href="#" id="newTask">Nova tarefa</a></li>
+                        <li class="list-group-item vermelho" id="item-3"><a href="#" id="pedingTask">Tarefas pendente</a></li>
+                        <li class="list-group-item azul" id="item-4"><a href="#" id="completeTask">Tarefas concluída</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="container pagina">
+                        <div class="col">
+                            <h4 class="title-user-todo"><span><?= salutation() ?>, </span><?= ucwords($_SESSION['user'])  ?></h4>
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card vermelho tm-card">
+                                        <div class="card-header bg-danger text-white text-center">
+                                            Tarefas Pendente
+                                        </div>
+                                        <div class="card-body text-left">
+                                            Quantidade: <span id="ta-pe"></span> 
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card azul tm-card">
+                                        <div class="card-header bg-primary text-white text-center">
+                                            Tarefas Concluída
+                                        </div>
+                                        <div class="card-body">
+                                            Quantidade: <span id="ta-co"></span> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-6">
+                                <div class="col-md-6">
+                                    <div class="card cinza tm-card">
+                                        <div class="card-header bg-secondary text-white text-center">
+                                            Total de Tarefas
+                                        </div>
+                                        <div class="card-body text-left">
+                                            Quantidade: <span id="total-tarefa"></span> 
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card amarelo tm-card">
+                                        <div class="card-header bg-warning text-white text-center">
+                                            Tarefas Excluidas
+                                        </div>
+                                        <div class="card-body">
+                                            Quantidade: <span id="ta-ex"></span> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>        
+                    </div>
+                </div>
+            </div>
+</div>
+
+<script>
+
+    $(document).ready(() =>{
+        loadInfo()
+
+        function loadInfo(){
+            $.ajax({
+                type: 'POST',
+                url: 'loader.php',
+                data: 'fileLoad=Dashboard',
+                dataType: 'JSON',
+                success: loadInfos =>{
+                    console.log(loadInfos)
+                    if(loadInfos.totalTask != ""){
+                        $('#total-tarefa').html(loadInfos.totalTask)
+                    }else{
+                        $('#total-tarefa').html('0')
+                    }
+                    $('#ta-pe').html('0')
+                    $('#ta-co').html('0')
+                    // $('#total-tarefa').html('0')
+                    $('#ta-ex').html('0')
+                },
+                error: erro =>{
+                    console.log(erro.responseText)
+                }
+            })
+        }
+    })
+
+</script>

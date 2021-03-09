@@ -1,0 +1,82 @@
+<div class="container mt-5">
+            <div class="dashboard-content">
+                <div class="col-md-3 menu">
+                    <ul class="list-group">
+                        <li class="list-group-item azul-claro" id="item-1"><a href="#" id="dashboard">Dashboard</a></li>
+                        <li class="list-group-item verde active" id="item-2"><a href="#" id="newTask">Nova tarefa</a></li>
+                        <li class="list-group-item vermelho" id="item-3"><a href="#" id="pedingTask">Tarefas pendente</a></li>
+                        <li class="list-group-item azul" id="item-4"><a href="#" id="completeTask">Tarefas concluída</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="container pagina">
+                        <div class="row">
+							<div class="col">
+								<h4>Nova tarefa</h4>
+								<hr />
+
+								<form id="newTask-form">
+									<div class="form-group">
+										<label>Descrição da tarefa:</label>
+										<input type="text" class="form-control" placeholder="Exemplo: estudar java" name="task" id="input-task">
+                                        <input type="text" hidden name="idUser" value="<?= $_SESSION['id'] ?>">
+									</div>
+                                    
+                                    <button class="btn btn-success" id="loading-register" type="button" disabled>
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            Cadastrando...
+                                    </button>
+									<button class="btn btn-success" id="registerTask">Cadastrar</button>
+								</form>
+                                <div class="alert  mt-2" id="alert-msg-task" role="alert">
+                                    
+                                </div>
+
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<script>
+    $(document).ready(() =>{
+
+        $('#registerTask').on('click', e =>{
+            e.preventDefault()
+            $(e.target).hide()
+            $('#loading-register').show()
+            $('#alert-msg-task').hide().removeClass('alert-danger alert-success')
+            let newTask = $('#newTask-form').serialize()
+            $.ajax({
+                type: 'POST',
+                url: 'loader.php',
+                data: 'fileLoad=Task&' + newTask,
+                dataType: 'JSON',
+                success: task => {
+                    if(task.task == false){
+                        alertsTodoList('#alert-msg-task', 'É obrigatório preencher uma tarefa', 'alert-danger')    
+                    }
+                    if(task.insert == false){
+                        alertsTodoList('#alert-msg-task', 'Tente novamente', 'alert-danger')
+                    }
+                    if(task.insert == true){
+                        alertsTodoList('#alert-msg-task', 'Tarefa cadastrada com sucesso!!!', 'alert-success')
+                        $('#input-task').val('')
+                        setTimeout(() =>{
+                            $('#alert-msg-task').hide().toggleClass('alert-success')
+                        },1500)
+                    }
+                    $(e.target).show()
+                    $('#loading-register').hide()
+                },
+                error: erro => {
+                    console.log(erro)
+                    alertsTodoList('#alert-msg-task', erro.responseText, 'alert-danger')
+                }
+            })
+        })
+
+    })
+</script>

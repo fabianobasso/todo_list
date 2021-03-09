@@ -1,20 +1,6 @@
 $(document).ready(() =>{
 
-    $('#create-user').on('click', () => {
-        $('#login').slideToggle(1000)
-        $('#login-form').html('Cadastro')
-        $('#cadastro').slideToggle(1000)
-        $('.login-text').slideToggle(1000)
-        $('.cadastro-text').slideToggle(1000)
-    })
-
-    $('#cancel-registry').on('click', () => {
-        $('#login').slideToggle(1000)
-        $('#login-form').html('Login')
-        $('#cadastro').slideToggle(1000)
-        $('.login-text').slideToggle(1000)
-        $('.cadastro-text').slideToggle(1000)
-    })
+    testeConsole()
 
     // Open modal create database
     $('.btn-custom-config').on('click', () =>{
@@ -38,7 +24,7 @@ $(document).ready(() =>{
         typeWrite(text, el)     
         $.ajax({
             type: 'POST',
-            url: 'router.php',
+            url: 'setupDataBase.php',
             data: 'directory=db&file=setupSqlite',
             success: dados => {
                 if(dados == '1'){
@@ -85,45 +71,14 @@ $(document).ready(() =>{
         el.innerHTML = 'Status Ok'
     }
 
-
-    // Validate fields for user resgistration
     
-    // name must contain 3 or more
-    $('#name').keyup( e =>{
-        $('#nameHelp').html('O nome deve ter no minimo 3 caracteres').addClass('text-danger')
-        let name = $(e.target).val()
-        if(name.length >= 3){
-            $('#nameHelp').html('Sucesso &#10003;').removeClass('text-danger').addClass('text-success')
-        }
-    })
-
-    // email exemple exemplo@dominio.com
-    $('#email').keyup(e =>{
-        $('#emailHelp').html('exemplo@dominio.com').addClass('text-muted ')
-    })
-
-    // must be a maximum of 12 characteres
-    $('#senha').keyup(e =>{
-        $('#passwordHelp').html('senha deve conter no máximo 12 caracteres entre número e letras')
-    })
-
-
-    // Fazer login do app
-    $('#btn-login-app').on('click', e => {
-        e.preventDefault()
-        $.ajax({
-            type: 'POST',
-            url: 'loader.php',
-            data: 'fileLoad=login',
-            dataType: 'json',
-            success: data =>{
-                if(data == '1'){
-                    location.href = 'app.php'
-                }
-                console.log(data)
-                
-            },
-            error: erro =>{console.log(erro)}
-        })
-    })
 })
+
+// Função para mostrar alerts dinamico
+function alertsTodoList(selector, msg, className){
+    $(selector).show().html(msg).toggleClass(className)
+}
+
+function testeConsole(){
+    console.log('ola')
+}

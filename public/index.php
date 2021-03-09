@@ -15,9 +15,11 @@
     <!-- Css customizado -->
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- font awesome 5.15-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <!-- Script jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -53,151 +55,49 @@
         </div>
     </nav>
 
-    <div class="container app">
+    <div class="container app" id="todo-container">
 
-        <div>
-            <!-- <button id="create-user">teste</button> -->
-        </div>
-
-        <div class="card login">
-            <div class="card-header text-center login-title" id="login-form">
-                Login
+        <div class="card">
+            <div class="card-header bg-dark td-flex-row">
+                <div class="td-icon">
+                    <img src="assets/img/logo.svg" width="30" height="30">
+                </div>
+                <div class="td-title">
+                    <h3 class="login-text-change">Login</h3>
+                </div>
             </div>
-            <div class="card-body ">
-                <div id="login">
-                    <form action="" class="login-form">
-                        <div class="form-group mb-5">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-lg fa-user"></i></span>
-                                <input type="text" name="email" class="form-control" placeholder="usuário">
-                            </div>
-                            
-                        </div>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-lg fa-unlock-alt"></i></span>
-                            <input type="password" name="senha" class="form-control" placeholder="senha">
-                        </div>
-                        <button type="submit" class="btn btn-primary mt-3" id="btn-login-app">Login</button>
-                    </form>    
-                </div>
 
-                <div id="cadastro">
-                    <form action="loader.php" class="cadastro-form" method="post">
-                        <div class="form-group">
-                            <div class="input-group">
-                                
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Nome</span>
-                                </div>
-                                <input type="text" name="name" class="form-control" id="name">
-                                    
-                            </div>
-                            <small id="nameHelp" class="form-text"></small>
-                            
-                        </div>
-
-                        <div class="form-group">
-                            <div class="input-group">
-                                
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Email</span>
-                                </div>
-                                <input type="email" name="email" class="form-control" id="email">
-                                
-                            </div>
-                            <small id="emailHelp" class="form-text"></small>
-                            
-                        </div>
-
-                        <div class="form-group">
-                            <div class="input-group">
-                                
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Senha</span>
-                                </div>
-                                <input type="password" name="password" class="form-control"  maxlength="12" id="senha">
-                                <small id="passwordHelp" class="form-text"></small>
-                            </div>
-                            
-                        </div>
-
-                        <!-- madar a função que deve ser carregada -->
-                        <input type="hidden" name="fileLoad" value="cadastra">    
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                    </form>    
-                </div>
-                
-                <div class="login-text">  
-                    <button id="create-user" class="btn-custom">Criar usuário</button>
-                    <button class="btn-custom">Esqueceu a Senha?</button>
-                </div>
-
-                <div class="cadastro-text">  
-                    <button id="cancel-registry" class="btn-custom">Voltar</button>
-                </div>
-                
+            <div class="card-body"  id="login-todo">
+                <?php require_once 'assets/Views/index/login.phtml' ?>
             </div>
-            <div class="card-footer text-right login-title">
+            <div class="card-footer text-right bg-dark">
                 Configuração <button class="btn-custom-config"><i class="fa fa-cog fa-spin fa-lg"></i></button>
             </div>
         </div>
-        <?php if(isset($_GET['cadastro'])): ?>
 
-        <div class="alert alert-danger mt-2 div-alert" role="alert">
-            <?= 'Para cadastro de usuário todos os campos são obrigatórios.' ?>
-        </div>
-
-        <?php endif  ?>
-        
-        
-        <?php if(isset($_GET['name'])): ?>
-
-        <div class="alert alert-danger mt-2 div-alert" role="alert">
-            <?= 'Nome informado inválido' ?>
-        </div>
-
-        <?php endif  ?>
-        
-        
-        <?php if(isset($_GET['email'])): ?>
-
-        <div class="alert alert-danger mt-2 div-alert" role="alert">
-            <?= 'Email informado é  inválido' ?>
-        </div>
-        
-        <?php endif  ?>
-        
-        <?php if(isset($_GET['duplicidade'])): ?>
-
-        <div class="alert alert-danger mt-2 div-alert" role="alert">
-            <?= 'Email informado já esta cadastrado' ?>
-        </div>
-        
-        <?php endif  ?>
-        
-        
-        <?php if(isset($_GET['sucesso'])): ?>
-
-        <div class="alert alert-success mt-2 div-alert" role="alert">
-            <?= 'Usuário Cadastrado com sucesso' ?>
-        </div>
-
-        <?php endif  ?>
-        
-        <?php if(isset($_GET['banco'])): ?>
-
-        <div class="alert alert-danger mt-2 div-alert" role="alert">
-            <?= 'É necessário configurar o banco de dados primeiro' ?>
-        </div>
-
-        <?php endif  ?>
-        
-        
+        <?php if(isset($_GET['auth'])): ?>
+            <div class="alert  mt-3 alert-danger alert-login"  role="alert"> É obrigatório fazer o login</div>
+        <?php endif ?>
+        <div class="alert  mt-3 alerts-todo"  role="alert"></div>
     </div>
 
-    <!-- Script jquery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <footer>
+        <div class="fixed-bottom todo-footer bg-dark"> 
+            <div class="todo-copy">
+                Copyright &copy; <?= date('Y') ?> <span class="author">Fabiano Basso</span>  
+            </div>
+            <div class="todo-version">
+                <span class="version">@Versão 1.0</span> 
+            </div>
+        </div>
+    </footer>
+
+    
     <!-- Script app -->
+    
     <script src="assets/js/app.js"></script>
+    <!-- Script BootStrap -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
