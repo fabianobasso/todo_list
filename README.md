@@ -102,6 +102,7 @@ Foi usado uma estrutura MVC diferente das convencionais porque usei javascript e
 **Pré-requisitos:**. 
 - Sistema Operacional Linux, Windows ou MAC
 - XAMPP instalado ou qualquer outro para simular servidor web (Somente necessário o php para funcionar)
+- Ter instaldo sqlite3  e as lib pdo para sqlite habilitada no php.ini
 - Navegador de internet.
 
 ```bash
@@ -110,15 +111,34 @@ git clone https://github.com/fabianobasso/todo_list.git
 ```
 - Copiar a pasta do projeto para pasta publica do XAMPP
 - Abrir o projeto no navegador.
-
+- No primeiro acesso é necessário configurar o banco de dados.
+   
+<table>
+    <tr>
+        <td><b>Passo 1- clicar na engrenagem</b></td>
+    </tr>
+    <tr>
+        <td><img src="https://github.com/fabianobasso/assets/blob/master/img/TodoList/ConfigBanco.png" width="200" height="100"></td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td><b>Passo 2- clicar em criar o banco e todo processo é feito automático</b></td>
+    </tr>
+    <tr>
+        <td><img src="https://github.com/fabianobasso/assets/blob/master/img/TodoList/ConfigBanco2.png" width="500" height="400"></td>
+    </tr>
+</table>
 
 
 # Autor
 
 ### Fabiano Basso
+Também trabalho como **DESENVOLVEDOR FULL STACK** freelancer, caso tenha algum projeto, essa é a hora certa de tirar ele do papel, podemos conversar, e vou apresentar a melhor solução para você.
 
-
-
+#### Meus Contatos:
+**Currículo online:** https://fabianobasso.github.io/
+<br>
 **Linkedin:** https://www.linkedin.com/in/fabiano-basso
 <br>
 **Whatsapp:** [Enviar Mensagem](https://api.whatsapp.com/send?phone=5519999979098)
