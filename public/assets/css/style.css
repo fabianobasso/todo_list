@@ -283,8 +283,52 @@ li a:hover {
 .dashboard-content{
     display: flex;
     flex-direction: row;
-    width: 100%;
-    
+    width: 100%; 
+}
+span.qtde-task{
+    font-size: 18px;
+    font-weight: 800;
+    margin-left: 15px;
+}
+
+.task-infos{
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+    border-radius: 4px;
+    height: 60px;
+    padding: 15px;
+    margin: 20px auto;
+    justify-content: space-between;
+    align-items: center;
+}
+.task-infos .text-info{
+    color: #fff !important;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+}
+.task-infos .text-num-task span{
+    width: 40px;
+    height: 30px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+i.fas{
+    cursor: pointer;
+}
+
+.img-spnnier{
+    position: absolute;
+    z-index: 150;
+    left: calc(50% - 15%);
+    top: calc(50% - 30%);
+    display: none;
+}
+
+#update-tasks{
+    display: none;
 }
 
 /* New Task */
@@ -293,4 +337,13 @@ li a:hover {
 }
 #loading-register{
     display: none;
+}
+
+.tm-task{
+    height: 400px;
+    overflow-y: auto;
+}
+.header-task{
+    background-color: #fff;
+    margin-bottom: 15px;
 }

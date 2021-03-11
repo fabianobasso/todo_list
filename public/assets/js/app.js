@@ -1,7 +1,5 @@
 $(document).ready(() =>{
 
-    testeConsole()
-
     // Open modal create database
     $('.btn-custom-config').on('click', () =>{
         $('#modal-db').fadeToggle(100)
@@ -79,6 +77,3 @@ function alertsTodoList(selector, msg, className){
     $(selector).show().html(msg).toggleClass(className)
 }
 
-function testeConsole(){
-    console.log('ola')
-}
